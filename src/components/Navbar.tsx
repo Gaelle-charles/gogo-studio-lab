@@ -31,7 +31,6 @@ const Navbar: React.FC = () => {
     { label: "Projets", href: "/#projects", isExternal: false },
     { label: "À propos", href: "/#about", isExternal: false },
     { label: "Blog", href: "/blog", isExternal: false },
-    { label: "Devis", href: "/#quote", isExternal: false },
   ];
 
   return (
