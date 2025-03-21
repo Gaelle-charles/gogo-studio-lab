@@ -3,8 +3,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, ArrowLeft, Check, Send } from "lucide-react";
 import AnimatedWrapper from "./AnimatedWrapper";
 import { toast } from "sonner";
-import { supabase } from './supabaseClient'; // Importez le client Supabase
-
+import { supabase } from '@/supabaseClient';
 
 interface FormStep {
   id: string;
@@ -178,43 +177,40 @@ const QuoteForm: React.FC = () => {
 
     setIsSubmitting(true);
     
-    // Simulate API call
- try {
-    // Envoyer les données à Supabase
-    const { data, error } = await supabase
-      .from('devis') // Remplacez 'devis' par le nom de votre table
-      .insert([{
-        project_type: formData.projectType,
-        project_features: formData.projectFeatures,
-        budget: formData.budget,
-        timeline: formData.timeline,
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.company,
-        message: formData.message,
-      }]);
+    try {
+      const { data, error } = await supabase
+        .from('devis')
+        .insert([{
+          project_type: formData.projectType,
+          project_features: formData.projectFeatures,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+        }]);
 
-    if (error) {
+      if (error) {
+        console.error('Erreur lors de l\'envoi du devis :', error);
+        toast.error('Une erreur est survenue lors de l\'envoi du devis.');
+      } else {
+        console.log('Devis envoyé avec succès :', data);
+        toast.success('Votre demande de devis a été envoyée avec succès !');
+        setSubmitted(true);
+      }
+    } catch (error) {
       console.error('Erreur lors de l\'envoi du devis :', error);
       toast.error('Une erreur est survenue lors de l\'envoi du devis.');
-    } else {
-      console.log('Devis envoyé avec succès :', data);
-      toast.success('Votre demande de devis a été envoyée avec succès !');
-      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error('Erreur lors de l\'envoi du devis :', error);
-    toast.error('Une erreur est survenue lors de l\'envoi du devis.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
   return (
     <section id="quote" className="py-24 px-6 relative overflow-hidden">
-      {/* Background elements */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gogogo-yellow/10 dark:bg-gogogo-yellow/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gogogo-purple/10 dark:bg-gogogo-purple/5 rounded-full blur-3xl"></div>
@@ -257,7 +253,6 @@ const QuoteForm: React.FC = () => {
           </AnimatedWrapper>
         ) : (
           <div className="glass-card rounded-2xl shadow-xl overflow-hidden">
-            {/* Progress bar */}
             <div className="relative h-2 bg-muted">
               <div
                 className="absolute top-0 left-0 h-full bg-gradient-to-r from-gogogo-yellow to-gogogo-purple transition-all duration-300 ease-out"
@@ -267,14 +262,12 @@ const QuoteForm: React.FC = () => {
               ></div>
             </div>
 
-            {/* Step indicators */}
             <div className="flex justify-between px-8 pt-6">
               {formSteps.map((step, index) => (
                 <button
                   key={step.id}
                   className="relative flex flex-col items-center"
                   onClick={() => {
-                    // Only allow going back or to validated steps
                     if (index <= currentStep) {
                       setCurrentStep(index);
                     }
@@ -312,7 +305,6 @@ const QuoteForm: React.FC = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="p-8">
-              {/* Step 1: Project Type */}
               {currentStep === 0 && (
                 <AnimatedWrapper animation="fade-in" className="space-y-6">
                   <div>
@@ -359,7 +351,6 @@ const QuoteForm: React.FC = () => {
                 </AnimatedWrapper>
               )}
 
-              {/* Step 2: Project Features */}
               {currentStep === 1 && (
                 <AnimatedWrapper animation="fade-in" className="space-y-6">
                   <div>
@@ -418,7 +409,6 @@ const QuoteForm: React.FC = () => {
                 </AnimatedWrapper>
               )}
 
-              {/* Step 3: Budget and Timeline */}
               {currentStep === 2 && (
                 <AnimatedWrapper animation="fade-in" className="space-y-6">
                   <div>
@@ -512,7 +502,6 @@ const QuoteForm: React.FC = () => {
                 </AnimatedWrapper>
               )}
 
-              {/* Step 4: Contact Information */}
               {currentStep === 3 && (
                 <AnimatedWrapper animation="fade-in" className="space-y-6">
                   <div>
