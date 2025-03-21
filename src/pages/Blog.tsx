@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import AnimatedWrapper from "@/components/AnimatedWrapper";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from '../supabaseClient'; // Importez le client Supabase
+
 
 const blogCategories = [
   "Tous", "NoCode", "LowCode", "Automatisation", "IA Créative", "Intégrations", "Conseils"
@@ -69,10 +71,38 @@ const blogPosts = [
 
 const Blog: React.FC = () => {
   const [activeCategory, setActiveCategory] = React.useState("Tous");
+  const [blogPosts, setBlogPosts] = useState([]); // État pour stocker les articles
+  const [loading, setLoading] = useState(true); // État pour gérer le chargement
+
+  // Récupérer les articles depuis Supabase
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('articles')
+          .select('*')
+          .order('date', { ascending: false }); // Trier par date décroissante
+
+        if (error) {
+          console.error('Erreur lors de la récupération des articles :', error);
+        } else {
+          setBlogPosts(data); // Mettre à jour l'état avec les articles récupérés
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération des articles :', error);
+      } finally {
+        setLoading(false); // Arrêter le chargement
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   const filteredPosts = activeCategory === "Tous" 
     ? blogPosts 
     : blogPosts.filter(post => post.category === activeCategory);
+   if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Chargement...</div>;
 
   return (
     <div className="min-h-screen flex flex-col">
