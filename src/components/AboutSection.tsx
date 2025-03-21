@@ -29,11 +29,11 @@ const AboutSection: React.FC = () => {
                 <div className="mt-8">
                   <div className="flex items-center gap-3 mb-4">
                     <CheckCircle className="text-gogogo-yellow" size={20} />
-                    <span>Plus de 130 projets livrés</span>
+                    <span>Plus de 20 projets livrés</span>
                   </div>
                   <div className="flex items-center gap-3 mb-4">
                     <CheckCircle className="text-gogogo-purple" size={20} />
-                    <span>95% de clients satisfaits</span>
+                    <span>Clients satisfaits</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="text-gogogo-yellow" size={20} />
