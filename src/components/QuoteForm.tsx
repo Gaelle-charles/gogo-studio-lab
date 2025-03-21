@@ -179,13 +179,38 @@ const QuoteForm: React.FC = () => {
     setIsSubmitting(true);
     
     // Simulate API call
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setIsSubmitting(false);
+ try {
+    // Envoyer les données à Supabase
+    const { data, error } = await supabase
+      .from('devis') // Remplacez 'devis' par le nom de votre table
+      .insert([{
+        project_type: formData.projectType,
+        project_features: formData.projectFeatures,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        message: formData.message,
+      }]);
+
+    if (error) {
+      console.error('Erreur lors de l\'envoi du devis :', error);
+      toast.error('Une erreur est survenue lors de l\'envoi du devis.');
+    } else {
+      console.log('Devis envoyé avec succès :', data);
+      toast.success('Votre demande de devis a été envoyée avec succès !');
       setSubmitted(true);
-      toast.success("Votre demande de devis a été envoyée avec succès !");
-    }, 1500);
-  };
+    }
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi du devis :', error);
+    toast.error('Une erreur est survenue lors de l\'envoi du devis.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="quote" className="py-24 px-6 relative overflow-hidden">
