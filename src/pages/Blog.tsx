@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedWrapper from "@/components/AnimatedWrapper";
@@ -7,70 +6,12 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from '../supabaseClient'; // Importez le client Supabase
 
-
 const blogCategories = [
   "Tous", "NoCode", "LowCode", "Automatisation", "IA Créative", "Intégrations", "Conseils"
 ];
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Les avantages du NoCode pour les startups",
-    excerpt: "Découvrez comment le NoCode peut accélérer le développement de votre startup sans compromettre la qualité.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    date: "15 Mai 2023",
-    category: "NoCode",
-    slug: "avantages-nocode-startups"
-  },
-  {
-    id: 2,
-    title: "Automatiser vos tâches marketing avec des outils LowCode",
-    excerpt: "Explorez les solutions d'automatisation marketing qui ne nécessitent que peu de codage.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-    date: "3 Juin 2023",
-    category: "Automatisation",
-    slug: "automatisation-marketing-lowcode"
-  },
-  {
-    id: 3,
-    title: "L'IA générative pour la création de contenu visuel",
-    excerpt: "Comment utiliser l'IA pour créer des visuels de qualité professionnelle pour votre entreprise.",
-    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80",
-    date: "22 Juillet 2023",
-    category: "IA Créative",
-    slug: "ia-generative-creation-contenu-visuel"
-  },
-  {
-    id: 4,
-    title: "Créer un site e-commerce sans code en une journée",
-    excerpt: "Un guide pas à pas pour lancer votre boutique en ligne sans connaissances techniques préalables.",
-    image: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=800&q=80",
-    date: "8 Août 2023",
-    category: "NoCode",
-    slug: "site-ecommerce-sans-code"
-  },
-  {
-    id: 5,
-    title: "Comment connecter vos outils préférés avec des intégrations API",
-    excerpt: "Un guide pour faire communiquer efficacement toutes vos applications professionnelles.",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
-    date: "19 Septembre 2023",
-    category: "Intégrations",
-    slug: "connecter-outils-integration-api"
-  },
-  {
-    id: 6,
-    title: "Générer des vidéos explicatives avec l'IA",
-    excerpt: "Comment utiliser les dernières technologies d'IA pour créer des vidéos d'explication professionnelles.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80",
-    date: "5 Octobre 2023",
-    category: "IA Créative",
-    slug: "videos-explicatives-ia"
-  }
-];
-
 const Blog: React.FC = () => {
-  const [activeCategory, setActiveCategory] = React.useState("Tous");
+  const [activeCategory, setActiveCategory] = useState("Tous");
   const [blogPosts, setBlogPosts] = useState([]); // État pour stocker les articles
   const [loading, setLoading] = useState(true); // État pour gérer le chargement
 
@@ -101,9 +42,10 @@ const Blog: React.FC = () => {
   const filteredPosts = activeCategory === "Tous" 
     ? blogPosts 
     : blogPosts.filter(post => post.category === activeCategory);
-   if (loading) {
+
+  if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Chargement...</div>;
-     }
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -173,7 +115,9 @@ const Blog: React.FC = () => {
                         </div>
                       </div>
                       <div className="p-6 flex-grow flex flex-col">
-                        <div className="text-sm text-muted-foreground mb-2">{post.date}</div>
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {new Date(post.date).toLocaleDateString()}
+                        </div>
                         <h4 className="text-xl font-bold mb-3 group-hover:text-gogogo-purple dark:group-hover:text-gogogo-yellow transition-colors">
                           {post.title}
                         </h4>
