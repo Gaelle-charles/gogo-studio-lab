@@ -31,13 +31,6 @@ const Footer: React.FC = () => {
               <a 
                 href="#" 
                 className="w-10 h-10 rounded-full flex items-center justify-center border border-border hover:border-gogogo-purple dark:hover:border-gogogo-yellow transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={18} />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full flex items-center justify-center border border-border hover:border-gogogo-purple dark:hover:border-gogogo-yellow transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
@@ -49,13 +42,7 @@ const Footer: React.FC = () => {
               >
                 <Linkedin size={18} />
               </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full flex items-center justify-center border border-border hover:border-gogogo-purple dark:hover:border-gogogo-yellow transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={18} />
-              </a>
+            
             </div>
           </div>
 
