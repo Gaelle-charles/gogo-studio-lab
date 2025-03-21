@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, ArrowLeft, Check, Send } from "lucide-react";
@@ -178,7 +179,7 @@ const QuoteForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('devis')
         .insert([{
           project_type: formData.projectType,
@@ -191,13 +192,13 @@ const QuoteForm: React.FC = () => {
           phone: formData.phone,
           company: formData.company,
           message: formData.message,
+          created_at: new Date().toISOString()
         }]);
 
       if (error) {
         console.error('Erreur lors de l\'envoi du devis :', error);
         toast.error('Une erreur est survenue lors de l\'envoi du devis.');
       } else {
-        console.log('Devis envoyé avec succès :', data);
         toast.success('Votre demande de devis a été envoyée avec succès !');
         setSubmitted(true);
       }
