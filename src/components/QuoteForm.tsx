@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, ArrowLeft, Check, Send } from "lucide-react";
 import AnimatedWrapper from "./AnimatedWrapper";
 import { toast } from "sonner";
-import { supabase } from '@/supabaseClient';
+import { supabase } from '../supabaseClient';
 
 interface FormStep {
   id: string;
