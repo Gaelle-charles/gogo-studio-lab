@@ -51,13 +51,6 @@ const HeroSection: React.FC = () => {
             >
               Demander un devis
             </a>
-            <a
-              href="#services"
-              className="group flex items-center justify-center gap-2 border-2 border-border hover:border-black dark:hover:border-white font-medium px-8 py-3.5 rounded-full transition-all"
-            >
-              Découvrir nos services
-              <ArrowDown className="group-hover:translate-y-1 transition-transform" size={18} />
-            </a>
           </div>
           
           <div className="mt-12 flex gap-8">
