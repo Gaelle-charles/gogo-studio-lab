@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -25,10 +26,11 @@ const Navbar: React.FC = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   const navItems = [
-    { label: "Accueil", href: "#hero" },
-    { label: "Services", href: "#services" },
-    { label: "À propos", href: "#about" },
-    { label: "Devis", href: "#quote" },
+    { label: "Accueil", href: "/", isExternal: false },
+    { label: "Services", href: "/#services", isExternal: false },
+    { label: "À propos", href: "/#about", isExternal: false },
+    { label: "Blog", href: "/blog", isExternal: false },
+    { label: "Devis", href: "/#quote", isExternal: false },
   ];
 
   return (
@@ -41,33 +43,33 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a
-          href="#"
+        <Link
+          to="/"
           className="text-2xl font-extrabold tracking-tighter flex items-center"
         >
           <span className="text-gogogo-yellow dark:text-gogogo-yellow">Go</span>
           <span className="text-gogogo-purple dark:text-gogogo-purple">Go</span>
           <span className="text-gogogo-yellow dark:text-gogogo-yellow mr-1">Go</span>
           <span className="text-foreground">Studio</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="text-foreground hover:text-gogogo-purple dark:hover:text-gogogo-yellow transition-colors relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gogogo-purple dark:after:bg-gogogo-yellow after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 hover:after:origin-bottom-left"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#quote"
-            className="bg-gradient-to-r from-gogogo-yellow to-gogogo-purple text-black font-bold px-6 py-2.5 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+          <Link
+            to="/#quote"
+            className="bg-gogogo-purple dark:bg-gogogo-yellow text-black font-bold px-6 py-2.5 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
             Demander un devis
-          </a>
+          </Link>
           <ThemeToggle />
         </nav>
 
@@ -95,22 +97,22 @@ const Navbar: React.FC = () => {
       >
         <div className="px-6 flex flex-col space-y-4">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="text-foreground py-2 border-b border-border hover:text-gogogo-purple dark:hover:text-gogogo-yellow transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#quote"
-            className="bg-gradient-to-r from-gogogo-yellow to-gogogo-purple text-black font-medium py-3 mt-2 rounded-full text-center hover:shadow-lg transition-all"
+          <Link
+            to="/#quote"
+            className="bg-gogogo-purple dark:bg-gogogo-yellow text-black font-medium py-3 mt-2 rounded-full text-center hover:shadow-lg transition-all"
             onClick={() => setMobileMenuOpen(false)}
           >
             Demander un devis
-          </a>
+          </Link>
         </div>
       </div>
     </header>

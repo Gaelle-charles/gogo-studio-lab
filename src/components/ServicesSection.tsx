@@ -8,36 +8,42 @@ const serviceCards = [
     icon: <Code className="w-6 h-6 text-gogogo-yellow" />,
     title: "Solutions NoCode",
     description: "Créez des applications web sans écrire une ligne de code. Idéal pour les sites vitrines, e-commerces et plateformes personnalisées.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
     delay: 0,
   },
   {
     icon: <Rocket className="w-6 h-6 text-gogogo-purple" />,
     title: "Développement LowCode",
     description: "Un équilibre parfait entre la simplicité du NoCode et la flexibilité du code personnalisé pour des solutions sur mesure.",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=800&q=80",
     delay: 150,
   },
   {
     icon: <Zap className="w-6 h-6 text-gogogo-yellow" />,
     title: "Automatisation",
     description: "Optimisez vos processus métier en automatisant vos tâches répétitives et connectant vos outils favoris.",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80",
     delay: 300,
   },
   {
     icon: <MonitorSmartphone className="w-6 h-6 text-gogogo-purple" />,
     title: "Intégrations API",
     description: "Connectez vos applications préférées et assurez une communication fluide entre vos différents services.",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
     delay: 450,
   },
   {
     icon: <Image className="w-6 h-6 text-gogogo-yellow" />,
     title: "Génération d'Images IA",
     description: "Créez des visuels uniques et professionnels pour votre marque grâce à l'intelligence artificielle.",
+    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80",
     delay: 600,
   },
   {
     icon: <Video className="w-6 h-6 text-gogogo-purple" />,
     title: "Vidéo IA",
     description: "Transformez vos idées en contenu vidéo captivant avec notre technologie de génération vidéo par IA.",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80",
     delay: 750,
   },
 ];
@@ -72,16 +78,26 @@ const ServicesSection: React.FC = () => {
               delay={service.delay}
               className="group"
             >
-              <div className="h-full p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:shadow-xl hover:border-gogogo-purple/30 dark:hover:border-gogogo-yellow/30 transition-all duration-500 hover:-translate-y-1">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-background mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
+              <div className="h-full rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:border-gogogo-purple/30 dark:hover:border-gogogo-yellow/30 transition-all duration-500 hover:-translate-y-1 flex flex-col">
+                <div className="aspect-video relative overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 flex items-center justify-center w-12 h-12 rounded-full bg-background shadow-lg">
+                    {service.icon}
+                  </div>
                 </div>
-                <h4 className="text-xl font-bold mb-3 group-hover:text-gogogo-purple dark:group-hover:text-gogogo-yellow transition-colors">
-                  {service.title}
-                </h4>
-                <p className="text-muted-foreground">
-                  {service.description}
-                </p>
+                <div className="p-6 flex-grow flex flex-col">
+                  <h4 className="text-xl font-bold mb-3 group-hover:text-gogogo-purple dark:group-hover:text-gogogo-yellow transition-colors">
+                    {service.title}
+                  </h4>
+                  <p className="text-muted-foreground">
+                    {service.description}
+                  </p>
+                </div>
               </div>
             </AnimatedWrapper>
           ))}
@@ -90,7 +106,7 @@ const ServicesSection: React.FC = () => {
         <AnimatedWrapper className="mt-16 text-center">
           <a
             href="#quote"
-            className="inline-flex items-center bg-gradient-to-r from-gogogo-yellow to-gogogo-purple text-black font-bold px-8 py-3.5 rounded-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            className="inline-flex items-center bg-gogogo-purple dark:bg-gogogo-yellow text-black font-bold px-8 py-3.5 rounded-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
             Demander un devis personnalisé
           </a>
