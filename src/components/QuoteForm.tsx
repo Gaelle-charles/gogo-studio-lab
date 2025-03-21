@@ -179,7 +179,10 @@ const QuoteForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
+  // Affichez les données avant l'envoi
+    console.log('Données du formulaire :', formData);
+      
+      const { data, error } = await supabase
         .from('devis')
         .insert([{
           project_type: formData.projectType,
