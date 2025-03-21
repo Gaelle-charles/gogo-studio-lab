@@ -47,13 +47,13 @@ const HeroSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="#quote"
-              className="bg-gradient-to-r from-gogogo-yellow to-gogogo-purple hover:shadow-lg hover:shadow-gogogo-purple/20 text-black font-bold px-8 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-1"
+              className="button-primary"
             >
               Demander un devis
             </a>
             <a
               href="#services"
-              className="group flex items-center justify-center gap-2 border-2 border-border hover:border-gogogo-purple dark:hover:border-gogogo-yellow font-medium px-8 py-3.5 rounded-full transition-all"
+              className="group flex items-center justify-center gap-2 border-2 border-border hover:border-black dark:hover:border-white font-medium px-8 py-3.5 rounded-full transition-all"
             >
               Découvrir nos services
               <ArrowDown className="group-hover:translate-y-1 transition-transform" size={18} />
@@ -87,53 +87,69 @@ const HeroSection: React.FC = () => {
           className="relative flex justify-center"
           delay={300}
         >
-          <div className="relative w-full max-w-lg aspect-square">
-            {/* Illustration en noir et blanc dans un cadre avec animation */}
-            <div className="absolute inset-0 bg-white dark:bg-black rounded-2xl overflow-hidden shadow-2xl border border-border transform transition-transform duration-700 hover:rotate-1">
-              {/* Image en noir et blanc */}
+          <div className="relative w-full max-w-lg">
+            {/* Fun illustration with animations */}
+            <div className="aspect-square relative bg-white dark:bg-black rounded-2xl overflow-hidden shadow-2xl border border-border transition-all duration-700 hover:rotate-2 hover:scale-105">
+              {/* Creative abstract illustration */}
               <svg 
-                className="w-full h-full" 
+                className="w-full h-full p-8" 
                 viewBox="0 0 400 400" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M200 50C117.2 50 50 117.2 50 200C50 282.8 117.2 350 200 350C282.8 350 350 282.8 350 200C350 117.2 282.8 50 200 50Z" stroke="currentColor" strokeWidth="2"/>
-                <path d="M200 80C134.1 80 80 134.1 80 200C80 265.9 134.1 320 200 320C265.9 320 320 265.9 320 200C320 134.1 265.9 80 200 80Z" stroke="currentColor" strokeWidth="2"/>
-                <path d="M200 120C156.9 120 120 156.9 120 200C120 243.1 156.9 280 200 280C243.1 280 280 243.1 280 200C280 156.9 243.1 120 200 120Z" fill="currentColor" fillOpacity="0.1"/>
-                <path d="M200 150C173.5 150 150 173.5 150 200C150 226.5 173.5 250 200 250C226.5 250 250 226.5 250 200C250 173.5 226.5 150 200 150Z" fill="currentColor" fillOpacity="0.2"/>
-                <path d="M130 100L270 300" stroke="currentColor" strokeWidth="2"/>
-                <path d="M270 100L130 300" stroke="currentColor" strokeWidth="2"/>
-                <path d="M100 200L300 200" stroke="currentColor" strokeWidth="2"/>
-                <path d="M200 100L200 300" stroke="currentColor" strokeWidth="2"/>
-                <circle cx="200" cy="200" r="10" fill="currentColor"/>
-                <circle cx="200" cy="150" r="5" fill="currentColor"/>
-                <circle cx="200" cy="250" r="5" fill="currentColor"/>
-                <circle cx="150" cy="200" r="5" fill="currentColor"/>
-                <circle cx="250" cy="200" r="5" fill="currentColor"/>
-                <rect x="180" y="180" width="40" height="40" stroke="currentColor" strokeWidth="2"/>
-                <path d="M100 150C100 150 150 120 200 150C250 180 300 150 300 150" stroke="currentColor" strokeWidth="2"/>
-                <path d="M100 250C100 250 150 280 200 250C250 220 300 250 300 250" stroke="currentColor" strokeWidth="2"/>
+                {/* Main circular elements */}
+                <circle cx="200" cy="200" r="150" stroke="currentColor" strokeWidth="2" strokeDasharray="10 5" className="animate-spin-slow" />
+                <circle cx="200" cy="200" r="100" stroke="currentColor" strokeWidth="2" className="animate-spin-slow animation-reverse" />
+                
+                {/* Decorative elements */}
+                <rect x="175" y="100" width="50" height="50" fill="currentColor" fillOpacity="0.1" className="animate-bounce animation-delay-500">
+                  <animate attributeName="y" values="100;110;100" dur="3s" repeatCount="indefinite" />
+                </rect>
+                <circle cx="200" cy="250" r="30" fill="currentColor" fillOpacity="0.1" className="animate-pulse-slow" />
+                
+                {/* Abstract pattern */}
+                <path d="M100,200 Q200,100 300,200" stroke="currentColor" strokeWidth="2" fill="none" className="animate-pulse-slow" />
+                <path d="M100,220 Q200,320 300,220" stroke="currentColor" strokeWidth="2" fill="none" className="animate-pulse-slow animation-delay-700" />
+                
+                {/* Techno elements */}
+                <path d="M150,120 L180,120 L180,150 L210,150 L210,180 L150,180 Z" stroke="currentColor" strokeWidth="2" fill="none" />
+                <path d="M220,220 L250,220 L250,250 L220,250 Z" stroke="currentColor" strokeWidth="2" fill="none" />
+                
+                {/* Digital symbols */}
+                <text x="140" y="140" className="text-sm" fill="currentColor">NoCode</text>
+                <text x="230" y="270" className="text-sm" fill="currentColor">IA</text>
+                
+                {/* Connected nodes */}
+                <circle cx="120" cy="200" r="8" fill="currentColor" />
+                <circle cx="170" cy="230" r="8" fill="currentColor" />
+                <circle cx="230" cy="170" r="8" fill="currentColor" />
+                <circle cx="280" cy="200" r="8" fill="currentColor" />
+                
+                <line x1="120" y1="200" x2="170" y2="230" stroke="currentColor" strokeWidth="1" />
+                <line x1="170" y1="230" x2="230" y2="170" stroke="currentColor" strokeWidth="1" />
+                <line x1="230" y1="170" x2="280" y2="200" stroke="currentColor" strokeWidth="1" />
+                
+                {/* Animation paths for floating elements */}
+                <path id="floatPath1" d="M150,100 Q200,50 250,100" stroke="none" fill="none" />
+                <path id="floatPath2" d="M150,300 Q200,350 250,300" stroke="none" fill="none" />
+                
+                {/* Floating elements */}
+                <g>
+                  <circle cx="0" cy="0" r="10" fill="currentColor" fillOpacity="0.6">
+                    <animateMotion path="M150,100 Q200,50 250,100 Q300,150 250,200 Q200,250 150,200 Q100,150 150,100" dur="20s" repeatCount="indefinite" />
+                  </circle>
+                </g>
+                <g>
+                  <rect x="-7" y="-7" width="14" height="14" fill="currentColor" fillOpacity="0.6">
+                    <animateMotion path="M250,200 Q300,250 250,300 Q200,350 150,300 Q100,250 150,200 Q200,150 250,200" dur="15s" repeatCount="indefinite" />
+                  </rect>
+                </g>
               </svg>
             </div>
             
-            {/* Éléments décoratifs autour */}
+            {/* Decorative elements */}
             <div className="absolute -top-6 -left-6 w-20 h-20 rounded-full bg-gogogo-yellow/30 dark:bg-gogogo-yellow/20 animate-float"></div>
             <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full bg-gogogo-purple/30 dark:bg-gogogo-purple/20 animate-float animation-delay-1000"></div>
-            
-            {/* Ligne pointillée stylisée */}
-            <div className="absolute top-1/2 left-0 w-full h-1 flex justify-between">
-              {Array.from({ length: 15 }).map((_, i) => (
-                <div 
-                  key={i}
-                  className="w-2 h-2 rounded-full bg-gogogo-yellow"
-                  style={{
-                    opacity: loaded ? 1 : 0,
-                    transform: loaded ? 'scale(1)' : 'scale(0)',
-                    transition: `all 0.5s ${i * 0.1}s ease-out`
-                  }}
-                ></div>
-              ))}
-            </div>
           </div>
         </AnimatedWrapper>
       </div>

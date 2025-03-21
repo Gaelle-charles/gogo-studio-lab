@@ -28,6 +28,7 @@ const Navbar: React.FC = () => {
   const navItems = [
     { label: "Accueil", href: "/", isExternal: false },
     { label: "Services", href: "/#services", isExternal: false },
+    { label: "Projets", href: "/#projects", isExternal: false },
     { label: "À propos", href: "/#about", isExternal: false },
     { label: "Blog", href: "/blog", isExternal: false },
     { label: "Devis", href: "/#quote", isExternal: false },
@@ -66,7 +67,7 @@ const Navbar: React.FC = () => {
           ))}
           <Link
             to="/#quote"
-            className="bg-gogogo-purple dark:bg-gogogo-yellow text-black font-bold px-6 py-2.5 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            className="button-primary"
           >
             Demander un devis
           </Link>
@@ -108,7 +109,7 @@ const Navbar: React.FC = () => {
           ))}
           <Link
             to="/#quote"
-            className="bg-gogogo-purple dark:bg-gogogo-yellow text-black font-medium py-3 mt-2 rounded-full text-center hover:shadow-lg transition-all"
+            className="bg-black text-white dark:bg-white dark:text-black font-medium py-3 mt-2 rounded-full text-center transition-all"
             onClick={() => setMobileMenuOpen(false)}
           >
             Demander un devis

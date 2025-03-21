@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, ArrowLeft, Check, Send } from "lucide-react";
@@ -223,7 +222,7 @@ const QuoteForm: React.FC = () => {
                   setCurrentStep(0);
                   setFormData(initialFormData);
                 }}
-                className="bg-gradient-to-r from-gogogo-yellow to-gogogo-purple text-black font-bold px-6 py-3 rounded-full hover:shadow-lg transition-all"
+                className="button-primary"
               >
                 Nouvelle demande
               </button>
@@ -584,7 +583,7 @@ const QuoteForm: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleNextStep}
-                    className="flex items-center bg-gradient-to-r from-gogogo-yellow to-gogogo-purple text-black font-bold px-6 py-2.5 rounded-full hover:shadow-lg transition-all"
+                    className="flex items-center button-primary"
                   >
                     Suivant
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -593,7 +592,7 @@ const QuoteForm: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex items-center bg-gradient-to-r from-gogogo-yellow to-gogogo-purple text-black font-bold px-6 py-2.5 rounded-full hover:shadow-lg transition-all disabled:opacity-70"
+                    className="flex items-center button-primary disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <>
